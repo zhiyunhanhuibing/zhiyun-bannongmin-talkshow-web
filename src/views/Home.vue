@@ -54,7 +54,7 @@
 	export default {
 		data() {
 			return {
-				sysName:'博客管理',
+				sysName:'zhiyun.hanhuibing.talkshow',
 				collapsed:false,
 				sysUserName: '',
 				sysUserAvatar: '',
