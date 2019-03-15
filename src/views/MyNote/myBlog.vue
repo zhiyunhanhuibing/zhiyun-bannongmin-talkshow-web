@@ -1,8 +1,9 @@
 <template>		
     <div class="bg1">    
-        <img src="https://img.zcool.cn/community/01394d5c383c0aa80121fbb0a34430.png@2o.png" >
+       
              
         <div id="articlelist">  
+                <img src="http://i.dyt7.cc/85/fd/fe/46/20/a8/79/81/e7/8c/03/c7/1f/b6/dc/ab.jpg" height="450" width="100%" >
             <div class="line">
                     <el-menu
                     :default-active="activeIndex2"
