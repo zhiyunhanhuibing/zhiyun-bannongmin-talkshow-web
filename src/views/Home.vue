@@ -54,7 +54,7 @@
 	export default {
 		data() {
 			return {
-				sysName:'商城管理',
+				sysName:'博客管理',
 				collapsed:false,
 				sysUserName: '',
 				sysUserAvatar: '',
@@ -69,6 +69,7 @@
 					desc: ''
 				},
 				datafrom: [
+					/**
                     {
                         path: '/Dictionaries',
                         name: '字典管理',
@@ -142,7 +143,10 @@
                                 name: '活动管理'
                             }
 						]
-                    },{
+                    }
+					,
+					**/
+					{
                         path: '/MyNote',
                         name: '我的笔记',
                         iconCls: 'fa fa-sticky-note-o',

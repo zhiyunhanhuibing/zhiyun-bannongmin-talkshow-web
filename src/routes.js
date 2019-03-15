@@ -15,6 +15,7 @@ import Role from './views/Role/role.vue'
 import MyNote from './views/MyNote/myNote.vue'
 import WriteNote from './views/MyNote/writeNote.vue'
 import MyBlog from './views/MyNote/myBlog.vue'
+import ShowArticle from './views/MyNote/showArticle.vue'
 let routes = [
     {
         path: '/login',
@@ -200,6 +201,12 @@ let routes = [
     {
         path: '/myBlog',
         component: MyBlog,
+        hidden: true
+    },
+
+    {
+        path: '/showArticle',
+        component: ShowArticle,
         hidden: true
     },
 ];

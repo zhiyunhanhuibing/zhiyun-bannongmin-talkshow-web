@@ -31,7 +31,7 @@ module.exports = {
     proxyTable: {
       '/plat':{
         // target: 'http://192.168.43.22:1080',
-        target: 'http://127.0.0.1:1088',
+        target: 'http://127.0.0.1:1080',
           changeOrigin:true,
           pathRewrite:{
           '^/plat':''

@@ -1,7 +1,8 @@
 <template>		
-    <div class="bg1">    
-        <img src="https://img.zcool.cn/community/01394d5c383c0aa80121fbb0a34430.png@2o.png" >
+    <div class="bg1">     
+         <img src="https://ss1.bdstatic.com/5aAHeD3nKgcUp2HgoI7O1ygwehsv/media/ch1/jpg/chunwantututu.jpg" height="100%" width="100%" >
              
+                
         <div id="articlelist">  
             <div class="line">
                     <el-menu
@@ -13,93 +14,48 @@
                     text-color="#fff"
                     active-text-color="#ffd04b">
                     <el-menu-item index="1" @click="toMyNote">管理笔记</el-menu-item>
-                    <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">ElementUI</a></el-menu-item>
+                   <el-menu-item index="1" @click="toMyBlog">我的博客</el-menu-item>
+                    <el-menu-item index="1" @click="toWriteNote">写笔记</el-menu-item>
                   </el-menu> 
             </div>
               
             <ui>
-                <li v-for="article in articlelist" >
-                    <span> {{article.updatetime}} </span>
                     <h4> 
-                    <router-link :to="{path:'/showArticle',query:{article_uuid:article.article_uuid}}">  {{article.article_title}} </router-link>
-                    <router-link tag="li" to="/showArticle">
-                   
-                    </router-link>
+                    {{article_title}}
                     </h4>
-                       <p> 摘要：{{article.article_title}}</p>
-                </li>
+                       <p> 摘要：<div id="article_content" v-html="article_content"></div></p>
+
             </ui>
         </div>
     </div>		
     </template>
     <script>
-    import axios from '@/views/MyNote/myNote';
-    import moment from "moment";
+    import axios from '@/views/MyNote/showArticle';
     export default {
         data () {
             return {
-            activeIndex: '1',
-            activeIndex2: '1',
-            labelPosition: 'right',
-            dialogFormVisible:false,
-            dialogFormVisible1:false,
-                form:{
-                    tel: '',
-                    weixin: '',
-                    startLimitTime:'',
-                    endLimitTime: '',
-                },
-                formDate:{
-                    userName:'',
-                    address:'',
-                    tel: '',
-                    weixin: '',
-                    limitTime:'',
-                },
-                articlelist:[],
-                datalist:[],
-                currentPage: 1,
-                totalPage: 0
+                article_title: '',
+                article_uuid:'',
+                article_content:'',
             }
         },
         created(){
+            this.article_uuid = this.$route.query.article_uuid;
             this.search();
         },
         methods: {
-            dateFormat: function(row, column) {
-            var data = row[column.property];
-            if (data == undefined) {
-                return "";
-            }
-            return moment(data).format("YYYY-MM-DD HH:mm:ss");
-            },
-            handleSizeChange(val) {
-            console.log(`每页 ${val} 条`);
-            },
-            handleCurrentChange(val) {
-            this.currentPage = val;
-            },
-            formatter(row,column){
-                return row.address;
-            },
-           
             //查询接口后台数据
-            search() {
-                let postSearch = Object.assign({},this.form);
+            search() {              
                 axios.systemQuery({
-                    postSearch
+                    article_uuid:this.article_uuid  
                 }).then((res) => {
                     console.log(res);
-                    this.articlelist=res.data.items;
-                    this.id = res.items.id;
-                    this.currentPage = res.data.currentPage;
-                    this.totalPage = res.data.totalNum;
-                    console.log(this.list);
+                    this.article_title = res.data.article_title;
+                    this.article_content=res.data.article_content;
                 }).catch((err) => {
                     console.log(err);
                 })
-            },
-            //跳转至写笔记界面
+            }, //跳转至写笔记界面
 			toMyNote: function () {
 				var _this = this;
 				_this.$router.push('/myNote');
@@ -109,9 +65,11 @@
                     var _this = this;
                     _this.$router.push('/writeNote');
                 },
-             handleSelect(key, keyPath) {
-                 console.log(key, keyPath);
-              },
+                //跳转至博客页
+			toMyBlog: function () {
+				var _this = this;
+				_this.$router.push('/myBlog');
+			},
         },
     };
     </script>
@@ -123,7 +81,7 @@
             }
             .line{
                 position: absolute;
-                top:-70px;
+                top:-90px;
             }
             li{
                 list-style: none;
@@ -158,8 +116,6 @@
                 background-image: -o-linear-gradient()
             }
         </style>
-    <!-- 引入样式 -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
     <style >
     .el-dialog--small {
       width: 50%;

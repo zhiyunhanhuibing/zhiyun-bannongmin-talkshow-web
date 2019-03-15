@@ -61,6 +61,7 @@
       },
       mounted() {
         var editor = new E(this.$refs.editor)
+        editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
         editor.customConfig.onchange = (html) => {
           this.editorContent = html
         }
