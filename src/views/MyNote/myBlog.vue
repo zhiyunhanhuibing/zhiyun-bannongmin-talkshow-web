@@ -24,7 +24,6 @@
                     <h4> 
                     <router-link :to="{path:'/showArticle',query:{article_uuid:article.article_uuid}}">  {{article.article_title}} </router-link>
                     <router-link tag="li" to="/showArticle">
-                   
                     </router-link>
                     </h4>
                        <p> 摘要：{{article.article_title}}</p>
@@ -92,6 +91,9 @@
                 }).then((res) => {
                     console.log(res);
                     this.articlelist=res.data.items;
+                    this.articlelist.forEach(element => {
+                        element.updatetime = moment(element.updatetime).format("YYYY-MM-DD HH:mm:ss");
+                    });
                     this.id = res.items.id;
                     this.currentPage = res.data.currentPage;
                     this.totalPage = res.data.totalNum;
@@ -139,7 +141,7 @@
                 font-size: 16px;
             }
             span{
-                width: 140px;
+                width: 220px;
                 text-align: center;
                 color: white;
                 margin-right: 10px;
