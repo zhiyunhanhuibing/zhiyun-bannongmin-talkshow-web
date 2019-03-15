@@ -60,7 +60,7 @@
                     type: 'success'
                   });
                   sessionStorage.setItem('user', JSON.stringify(userName));
-                  this.$router.push({ path: '/dictionaries' });
+                  this.$router.push({ path: '/MyNote' });
                 }
             });
           } else {
